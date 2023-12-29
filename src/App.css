@@ -100,7 +100,7 @@
   background-color: aqua;
 }
 .button-reset {
-  margin: 20px;
+  margin: 12px;
 } 
 
 .button-reset button {
@@ -113,7 +113,6 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .button-reset button:hover {
   background-color: #45a049; 
 }

@@ -1,5 +1,8 @@
 import React, {useState,useEffect} from 'react'
 import './App.css';
+import paper from "./images/paper.png";
+import rock from "./images/rock.png";
+import scissors from "./images/scissors.png";
 
 function App() {
   const [userChoice, setUserChoice]=useState('rock')
@@ -25,12 +28,10 @@ function App() {
   const reset=()=>{
     window.location.reload()
   }
-  const toggleMode = () => {
-    setDayMode(!dayMode);
-  };
+ 
 
   useEffect(()=>{
-    const comboMoves=userChoice + computerChoice
+    const comboMoves=userChoice.toLowerCase() + computerChoice.toLowerCase();
     if(userPoints<=2 && computerPoints<=2){
       if(comboMoves==='rockscissors'|| comboMoves=== 'paperrock'|| comboMoves=== 'scissorspaper'){
         const updatedUserPoints=userPoints+1
@@ -41,7 +42,7 @@ function App() {
           setResult('User wins')
         }
       }
-      if(comboMoves==='papercissors'|| comboMoves=== 'rockpaper'|| comboMoves=== 'scissorsrock'){
+      if(comboMoves==='paperscissors'|| comboMoves=== 'rockpaper'|| comboMoves=== 'scissorsrock'){
         const updatedComputerPoints=computerPoints+1
         setComputerPoints(updatedComputerPoints)
         setTurnResult('Computer got the point')
@@ -59,11 +60,9 @@ function App() {
   },[userChoice, computerChoice])
 
   return (
-  <div className={`bg ${dayMode ? 'day-mode' : 'night-mode'}`}>
+  <div className={"bg"}>
     <div className="App">
-    <div className="toggle-mode" onClick={toggleMode}>
-        {dayMode ? 'Switch to Night Mode' : 'Switch to Day Mode'}
-      </div>
+    
       <h1 className="heading">ROCK PAPER SCISSORS</h1>
       <div className="score">
         <h1>User Points : {userPoints}</h1>
@@ -71,10 +70,10 @@ function App() {
       </div>
       <div className="choices">
   <div className="choices-user">
-    <img src={`../images/${userChoice}.png`} alt="" className="user-hand" />
+    <img src={userChoice==='scissors'? scissors:userChoice==='paper'?paper:rock} alt="" className="user-hand" />
   </div>
   <div className="choices-computer">
-    <img src={`../images/${computerChoice}.png`} alt="" className="computer-hand" />
+    <img src={computerChoice==='scissors'? scissors:computerChoice==='paper'?paper:rock} alt="" className="computer-hand" />
   </div>
 </div>
       <div children='button-div'>{choices.map((choice,index)=>
